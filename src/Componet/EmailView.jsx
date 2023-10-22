@@ -1,27 +1,48 @@
+import { useDispatch } from "react-redux";
+import { addFavorite } from "../utils/favoritesSlice";
+import useFormattedDate from "../utils/useFormattedDate";
 
-const EmailView = () => {
+const EmailView = ({ emailDetails }) => {
+  console.log(emailDetails);
+  const formattedDate = useFormattedDate(emailDetails.date);
+  const dispatch = useDispatch();
+
+  const handleFavoriteClick = () => {
+    // Dispatch the addFavorite action with the email data
+    dispatch(addFavorite(email));
+  };
   return (
-    <section className="h-full p-6">
-      <header>
+    <section className="h-full p-4 border border-[#cfd2cd] rounded-lg">
+      <header className="flex w-full mb-4 items-start ">
         <div className="w-[35px] h-[35px] mr-6 mt-1 text-white text-xl bg-[#e54065] font-bold rounded-full flex justify-center items-center">
-          {"s"}
+          {emailDetails.from.name[0]}
         </div>
-        <div>
+        <div className="flex justify-between w-[90%] items-start">
           <section>
             <p className="">
-              <span className="font-bold text-3xl">{"sl,kdjbch"}</span>
+              <span className="font-bold text-3xl">{emailDetails.subject}</span>
             </p>
-            <p className="">
-              <span>{"dlcjldxbc"}</span>
+            <p className="my-2">
+              <span>{formattedDate}</span>
             </p>
           </section>
-          <button>
-            Mark as Favorites
-          </button>
+          <button 
+          onClick={handleFavoriteClick}
+          className=" text-white font-semibold text-sm bg-[#e54065] px-2 py-2 rounded-full">Mark as Favorites</button>
         </div>
       </header>
       <main>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam tempore voluptatum, atque, sequi temporibus rem totam soluta hic error consectetur quidem praesentium nostrum aliquid perspiciatis qui vitae, dicta fugiat fugit. Beatae tempora quam vitae dolore dolor, natus aliquam neque illum illo ad ipsam consequuntur id nesciunt corporis libero dolorum dolorem!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+        aliquid aut laboriosam at optio voluptates? Quisquam beatae accusantium
+        corrupti quo delectus neque quos. Soluta, esse. Pariatur, eius ea
+        necessitatibus aperiam officia cupiditate, repellat, mollitia debitis
+        error cumque beatae sunt! Cupiditate dicta nostrum facilis voluptates,
+        laborum hic tempora? Delectus libero natus atque distinctio alias amet
+        optio, saepe architecto qui reprehenderit id autem vel aut ullam
+        dignissimos culpa, iusto incidunt accusamus commodi rerum consectetur
+        illo. Illo minus ipsam veritatis unde vel consequatur, animi rem fugiat.
+        Ipsam odit sequi officia facere, officiis neque numquam dolore rem
+        deleniti voluptas facilis, quos incidunt optio unde.
       </main>
     </section>
   );

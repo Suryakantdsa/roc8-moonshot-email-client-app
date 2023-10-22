@@ -1,7 +1,8 @@
 import { Provider } from 'react-redux'
-import EmailBody from './Componet/EmailBody'
 import './index.css'
 import appStore from './utils/appStore'
+// import EmailList from './Componet/EmailList'
+import EmailBody from './Componet/EmailBody'
 function App() {
 
   return (

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import useFormattedDate from "../utils/useFormattedDate";
 import { useDispatch } from "react-redux";
+import { addFavorite } from "../utils/favoritesSlice";
 
 const EmailCard = ({ email }) => {
-  console.log(email);
+//   console.log(email);
   const { id, from, subject, desc, date } = email;
   const formattedDate = useFormattedDate(date);
 

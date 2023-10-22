@@ -1,18 +1,19 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { addFavorite } from "../utils/favoritesSlice";
 import useFormattedDate from "../utils/useFormattedDate";
 import useGetEmailDetails from "../utils/useGetEmailDetails";
 
 const EmailView = ({ emailDetails }) => {
-    const body=useGetEmailDetails(emailDetails.id)
-    console.log(body);
+  const body = useGetEmailDetails(emailDetails.id);
   const formattedDate = useFormattedDate(emailDetails.date);
   const dispatch = useDispatch();
 
   const handleFavoriteClick = () => {
-    // Dispatch the addFavorite action with the email data
-    dispatch(addFavorite(email));
+    dispatch(addFavorite(emailDetails)); 
+    alert("This email is added as favorite 👍")
   };
+
   return (
     <section className="h-full p-4 border border-[#cfd2cd] rounded-lg">
       <header className="flex w-full mb-4 items-start ">
@@ -28,14 +29,21 @@ const EmailView = ({ emailDetails }) => {
               <span>{formattedDate}</span>
             </p>
           </section>
-          <button 
-          onClick={handleFavoriteClick}
-          className=" text-white font-semibold text-sm bg-[#e54065] px-2 py-2 rounded-full">Mark as Favorites</button>
+          <button
+            onClick={handleFavoriteClick}
+            className="text-white font-semibold text-sm bg-[#e54065] px-2 py-2 rounded-full"
+          >
+            Mark as Favorites
+          </button>
         </div>
       </header>
       <main>
-        {/* body string here */}
-        <div dangerouslySetInnerHTML={{ __html: body.body }} />
+        {/* Conditionally render the email body */}
+        {body ? (
+          <div dangerouslySetInnerHTML={{ __html: body.body }} />
+        ) : (
+          <p>Loading email body...</p>
+        )}
       </main>
     </section>
   );

@@ -5,7 +5,7 @@ const readEmailSlice =createSlice({
     initialState:[],
     reducers:{
         addRead:(state, action) => {
-            return state.push(action.payload); // This will replace the existing data in the store with the fetched data
+            return [...state, action.payload];  // This will replace the existing data in the store with the fetched data
           }
     }
 })

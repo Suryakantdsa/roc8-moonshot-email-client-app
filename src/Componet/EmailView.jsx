@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { addFavorite } from "../utils/favoritesSlice";
 import useFormattedDate from "../utils/useFormattedDate";
+import useGetEmailDetails from "../utils/useGetEmailDetails";
 
 const EmailView = ({ emailDetails }) => {
-  console.log(emailDetails);
+    const body=useGetEmailDetails(emailDetails.id)
+    console.log(body);
   const formattedDate = useFormattedDate(emailDetails.date);
   const dispatch = useDispatch();
 
@@ -32,17 +34,8 @@ const EmailView = ({ emailDetails }) => {
         </div>
       </header>
       <main>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-        aliquid aut laboriosam at optio voluptates? Quisquam beatae accusantium
-        corrupti quo delectus neque quos. Soluta, esse. Pariatur, eius ea
-        necessitatibus aperiam officia cupiditate, repellat, mollitia debitis
-        error cumque beatae sunt! Cupiditate dicta nostrum facilis voluptates,
-        laborum hic tempora? Delectus libero natus atque distinctio alias amet
-        optio, saepe architecto qui reprehenderit id autem vel aut ullam
-        dignissimos culpa, iusto incidunt accusamus commodi rerum consectetur
-        illo. Illo minus ipsam veritatis unde vel consequatur, animi rem fugiat.
-        Ipsam odit sequi officia facere, officiis neque numquam dolore rem
-        deleniti voluptas facilis, quos incidunt optio unde.
+        {/* body string here */}
+        <div dangerouslySetInnerHTML={{ __html: body.body }} />
       </main>
     </section>
   );
